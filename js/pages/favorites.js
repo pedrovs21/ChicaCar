@@ -16,7 +16,7 @@ export async function renderFavorites(container) {
     
     <main class="main-container" style="min-height: 60vh;">
         <div class="section-header">
-            <h2 class="section-title">Meus Veículos Favoritos</h2>
+            <h2 class="section-title">Minhas TVs favoritas</h2>
         </div>
         
         ${favVehicles.length > 0 ? `
@@ -26,9 +26,9 @@ export async function renderFavorites(container) {
         ` : `
             <div style="text-align:center; padding: 4rem 1.5rem; color:var(--text-muted);">
                 <i class="fa-regular fa-heart" style="font-size:3.5rem; margin-bottom:1.5rem; color:var(--primary-color);"></i>
-                <p>Você ainda não favoritou nenhum veículo.</p>
-                <p style="font-size:0.9rem; margin-top:0.5rem;">Clique no coração dos cards na listagem de estoque para adicioná-los aqui.</p>
-                <a href="#/" class="btn btn-primary" style="margin-top:2rem;">Ver Estoque</a>
+                <p>Você ainda não favoritou nenhuma TV.</p>
+                <p style="font-size:0.9rem; margin-top:0.5rem;">Clique no coração de uma TV para adicioná-la aqui.</p>
+                <a href="#/" class="btn btn-primary" style="margin-top:2rem;">Ver TVs à venda</a>
             </div>
         `}
     </main>
@@ -64,7 +64,7 @@ export async function renderFavorites(container) {
             
             if (compareCb.checked) {
                 if (compIds.length >= 3) {
-                    alert("Você pode comparar no máximo 3 veículos simultaneamente.");
+                    alert("Você pode comparar no máximo 3 TVs simultaneamente.");
                     compareCb.checked = false;
                 } else if (!compIds.includes(id)) {
                     compIds.push(id);

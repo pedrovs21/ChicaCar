@@ -5,7 +5,7 @@ export function renderFooter() {
     const currentYear = new Date().getFullYear();
     const logoHtml = config.logoUrl 
         ? `<img src="${config.logoUrl}" alt="${config.companyName}" style="height:35px; width:auto; object-fit:contain;">`
-        : `<i class="fa-solid fa-car-side" style="font-size: 1.5rem; color: var(--primary-color);"></i>`;
+        : `<i class="fa-solid fa-tv" style="font-size: 1.5rem; color: var(--primary-color);"></i>`;
 
     return `
     <div class="footer-container">
@@ -35,12 +35,11 @@ export function renderFooter() {
         <div>
             <h4 class="footer-heading">Menu Rápido</h4>
             <ul class="footer-links">
-                <li><a href="#/">Estoque Geral</a></li>
+                <li><a href="#/">TVs à venda</a></li>
                 <li><a href="#/#sobre">Quem Somos</a></li>
                 <li><a href="#/#contato">Fale Conosco</a></li>
                 <li><a href="#/favoritos">Meus Favoritos</a></li>
-                <li><a href="#/comparar">Comparador de Veículos</a></li>
-                <li><a href="#/admin">Painel Administrativo</a></li>
+                <li><a href="#/comparar">Comparador de TVs</a></li>
             </ul>
         </div>
 
@@ -78,7 +77,7 @@ export function renderFooter() {
 
     <div class="footer-bottom">
         <p>&copy; ${currentYear} ${config.companyName}. Todos os direitos reservados.</p>
-        <p style="font-size:0.75rem;">Desenvolvido com <i class="fa-solid fa-heart" style="color: #ef4444;"></i> para revendas inteligentes.</p>
+        <p style="font-size:0.75rem;">Assistência técnica e vendas com atendimento de confiança.</p>
     </div>
     `;
 }

@@ -7,9 +7,9 @@ export function renderCompareGrid(cars = [], onRemove) {
         return `
         <div style="text-align:center; padding:3rem 1.5rem; color:var(--text-muted);">
             <i class="fa-solid fa-code-compare" style="font-size:3rem; margin-bottom:1rem; color:var(--primary-color);"></i>
-            <p>Nenhum veículo selecionado para comparação.</p>
-            <p style="font-size:0.85rem; margin-top:0.5rem;">Marque a caixa "Comparar" nos cards de veículos na página inicial.</p>
-            <a href="#/" class="btn btn-primary" style="margin-top:1.5rem;">Ir para o Estoque</a>
+            <p>Nenhuma TV selecionada para comparação.</p>
+            <p style="font-size:0.85rem; margin-top:0.5rem;">Marque a caixa "Comparar" nos cards de TVs à venda.</p>
+            <a href="#/" class="btn btn-primary" style="margin-top:1.5rem;">Ver TVs à venda</a>
         </div>
         `;
     }
@@ -17,18 +17,16 @@ export function renderCompareGrid(cars = [], onRemove) {
     // Especificações a comparar
     const specFields = [
         { label: "Preço", key: (car) => car.promoPrice ? `<span style="color:#ef4444; font-weight:700;">R$ ${car.promoPrice.toLocaleString('pt-BR')}</span> <span style="font-size:0.75rem; text-decoration:line-through; color:var(--text-muted);">R$ ${car.price.toLocaleString('pt-BR')}</span>` : `R$ ${car.price.toLocaleString('pt-BR')}` },
-        { label: "Ano", key: (car) => `${car.yearMfg}/${car.yearModel}` },
-        { label: "Quilometragem", key: (car) => car.km === 0 ? 'Zero Km' : `${car.km.toLocaleString('pt-BR')} km` },
-        { label: "Câmbio", key: "transmission" },
-        { label: "Combustível", key: "fuel" },
-        { label: "Motor", key: "engine" },
-        { label: "Potência", key: "power" },
-        { label: "Tração", key: "traction" },
-        { label: "Carroceria", key: "bodyType" },
+        { label: "Tamanho", key: (car) => `${car.km}\"` },
+        { label: "Resolução", key: "transmission" },
+        { label: "Sistema", key: "fuel" },
+        { label: "Painel", key: "engine" },
+        { label: "Taxa de atualização", key: "power" },
+        { label: "Conectividade", key: "traction" },
+        { label: "Tecnologia", key: "bodyType" },
         { label: "Cor", key: "color" },
-        { label: "Portas", key: "doors" },
-        { label: "Placa final", key: "plateEnd" },
-        { label: "Opcionais principais", key: (car) => car.options ? car.options.slice(0, 8).join(', ') + (car.options.length > 8 ? '...' : '') : 'Nenhum' }
+        { label: "Entradas", key: "doors" },
+        { label: "Recursos principais", key: (car) => car.options ? car.options.slice(0, 8).join(', ') + (car.options.length > 8 ? '...' : '') : 'Nenhum' }
     ];
 
     // Monta o cabeçalho com imagens e botões de remoção

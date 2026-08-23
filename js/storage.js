@@ -2,9 +2,9 @@ import { getConfig } from './config.js';
 
 // Nome dos storages locais
 const STORAGE_KEYS = {
-    VEHICLES: 'catalog_vehicles',
-    LEADS: 'catalog_leads',
-    ANALYTICS: 'catalog_analytics'
+    VEHICLES: 'tvcenter_products',
+    LEADS: 'tvcenter_leads',
+    ANALYTICS: 'tvcenter_analytics'
 };
 
 /**

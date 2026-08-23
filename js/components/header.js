@@ -4,7 +4,7 @@ export function renderHeader(activePage = 'home', favoritesCount = 0) {
     const config = getConfig();
     const logoHtml = config.logoUrl 
         ? `<img src="${config.logoUrl}" alt="${config.companyName}" class="logo-img">`
-        : `<i class="fa-solid fa-car-side" style="font-size: 1.8rem; color: var(--primary-color);"></i>`;
+        : `<i class="fa-solid fa-tv" style="font-size: 1.8rem; color: var(--primary-color);"></i>`;
 
     return `
     <div class="header-container">
@@ -17,14 +17,13 @@ export function renderHeader(activePage = 'home', favoritesCount = 0) {
         </a>
 
         <nav class="nav-menu">
-            <a href="#/" class="nav-link ${activePage === 'home' ? 'active' : ''}">Estoque</a>
+            <a href="#/" class="nav-link ${activePage === 'home' ? 'active' : ''}">TVs à venda</a>
             <a href="#/#sobre" class="nav-link">Sobre</a>
             <a href="#/#contato" class="nav-link">Contato</a>
             <a href="#/favoritos" class="nav-link ${activePage === 'favorites' ? 'active' : ''}">
                 Favoritos <span class="nav-fav-badge" id="header-fav-badge">${favoritesCount}</span>
             </a>
             <a href="#/comparar" class="nav-link ${activePage === 'compare' ? 'active' : ''}">Comparar</a>
-            <a href="#/admin" class="nav-link ${activePage === 'admin' ? 'active' : ''}">Painel Admin</a>
         </nav>
 
         <div class="header-actions">
@@ -42,14 +41,13 @@ export function renderHeader(activePage = 'home', favoritesCount = 0) {
     
     <!-- Mobile Drawer -->
     <div class="mobile-drawer" id="mobile-drawer" style="display:none; position:fixed; top:70px; left:0; width:100%; background:var(--bg-card); z-index:99; border-bottom: 1px solid var(--border-color); padding: 1.5rem; flex-direction:column; gap:1rem; box-shadow:var(--shadow-md);">
-        <a href="#/" class="nav-link ${activePage === 'home' ? 'active' : ''}" style="font-size:1.1rem; font-weight:600;">Estoque</a>
+        <a href="#/" class="nav-link ${activePage === 'home' ? 'active' : ''}" style="font-size:1.1rem; font-weight:600;">TVs à venda</a>
         <a href="#/#sobre" class="nav-link" style="font-size:1.1rem; font-weight:600;">Sobre</a>
         <a href="#/#contato" class="nav-link" style="font-size:1.1rem; font-weight:600;">Contato</a>
         <a href="#/favoritos" class="nav-link ${activePage === 'favorites' ? 'active' : ''}" style="font-size:1.1rem; font-weight:600;">
             Favoritos <span class="nav-fav-badge">${favoritesCount}</span>
         </a>
         <a href="#/comparar" class="nav-link ${activePage === 'compare' ? 'active' : ''}" style="font-size:1.1rem; font-weight:600;">Comparar</a>
-        <a href="#/admin" class="nav-link ${activePage === 'admin' ? 'active' : ''}" style="font-size:1.1rem; font-weight:600;">Painel Admin</a>
         <hr style="border:0; border-top:1px solid var(--border-color); margin: 0.5rem 0;">
         <a href="https://wa.me/${config.whatsapp}" target="_blank" class="btn btn-whatsapp" style="width:100%;">
             <i class="fa-brands fa-whatsapp"></i> Conversar pelo WhatsApp

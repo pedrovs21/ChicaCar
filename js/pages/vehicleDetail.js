@@ -15,9 +15,9 @@ export async function renderVehicleDetail(container, vehicleId) {
         <header>${renderHeader()}</header>
         <main class="main-container" style="text-align:center; padding: 5rem 1.5rem;">
             <i class="fa-solid fa-triangle-exclamation" style="font-size: 3rem; color: #ef4444; margin-bottom: 1.5rem;"></i>
-            <h2>Veículo Não Encontrado</h2>
-            <p style="color:var(--text-muted); margin-top:0.5rem; margin-bottom: 2rem;">O veículo solicitado pode ter sido vendido ou removido do estoque.</p>
-            <a href="#/" class="btn btn-primary">Voltar para o Estoque</a>
+            <h2>TV não encontrada</h2>
+            <p style="color:var(--text-muted); margin-top:0.5rem; margin-bottom: 2rem;">Esta TV pode ter sido vendida ou removida do catálogo.</p>
+            <a href="#/" class="btn btn-primary">Voltar para as TVs à venda</a>
         </main>
         <footer>${renderFooter()}</footer>
         `;
@@ -35,7 +35,7 @@ export async function renderVehicleDetail(container, vehicleId) {
     // Formatação de valores
     const formattedPrice = car.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     const formattedPromoPrice = car.promoPrice ? car.promoPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : null;
-    const formattedKm = car.km === 0 ? 'Zero Km' : `${car.km.toLocaleString('pt-BR')} km`;
+    const formattedKm = `${car.km}\"`;
     const shareUrl = window.location.href;
 
     // Mensagem dinâmica WhatsApp
@@ -56,7 +56,7 @@ export async function renderVehicleDetail(container, vehicleId) {
     <main class="main-container">
         <!-- Caminho de Navegação (Breadcrumbs) -->
         <nav style="font-size: 0.85rem; color:var(--text-muted); margin-bottom: 1.5rem; display:flex; gap:0.5rem;">
-            <a href="#/" style="color:var(--primary-color);">Estoque</a>
+            <a href="#/" style="color:var(--primary-color);">TVs à venda</a>
             <span>/</span>
             <a href="#/?brand=${car.brand}" style="color:var(--primary-color);">${car.brand}</a>
             <span>/</span>
@@ -74,39 +74,39 @@ export async function renderVehicleDetail(container, vehicleId) {
                 
                 <!-- Ficha Técnica Resumida -->
                 <div class="detail-card">
-                    <h3 style="font-size:1.3rem; margin-bottom:1.2rem;">Ficha Técnica</h3>
+                    <h3 style="font-size:1.3rem; margin-bottom:1.2rem;">Especificações</h3>
                     <div class="technical-grid">
                         <div class="tech-item">
-                            <span class="tech-label">Ano Modelo</span>
-                            <span class="tech-val">${car.yearMfg}/${car.yearModel}</span>
-                        </div>
-                        <div class="tech-item">
-                            <span class="tech-label">Quilometragem</span>
+                            <span class="tech-label">Tamanho</span>
                             <span class="tech-val">${formattedKm}</span>
                         </div>
                         <div class="tech-item">
-                            <span class="tech-label">Câmbio</span>
+                            <span class="tech-label">Resolução</span>
                             <span class="tech-val">${car.transmission}</span>
                         </div>
                         <div class="tech-item">
-                            <span class="tech-label">Combustível</span>
+                            <span class="tech-label">Sistema</span>
                             <span class="tech-val">${car.fuel}</span>
                         </div>
                         <div class="tech-item">
-                            <span class="tech-label">Cor Exterior</span>
+                            <span class="tech-label">Tecnologia de tela</span>
+                            <span class="tech-val">${car.bodyType}</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-label">Cor</span>
                             <span class="tech-val">${car.color}</span>
                         </div>
                         <div class="tech-item">
-                            <span class="tech-label">Motorização</span>
+                            <span class="tech-label">Painel</span>
                             <span class="tech-val">${car.engine || '-'}</span>
                         </div>
                         <div class="tech-item">
-                            <span class="tech-label">Potência</span>
+                            <span class="tech-label">Taxa de atualização</span>
                             <span class="tech-val">${car.power || '-'}</span>
                         </div>
                         <div class="tech-item">
-                            <span class="tech-label">Carroceria</span>
-                            <span class="tech-val">${car.bodyType}</span>
+                            <span class="tech-label">Conectividade</span>
+                            <span class="tech-val">${car.traction}</span>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@ export async function renderVehicleDetail(container, vehicleId) {
                 <!-- Opcionais (Checkbox list) -->
                 ${(car.options && car.options.length > 0) ? `
                     <div class="detail-card">
-                        <h3 style="font-size:1.3rem; margin-bottom:1.2rem;">Equipamentos e Opcionais</h3>
+                        <h3 style="font-size:1.3rem; margin-bottom:1.2rem;">Recursos</h3>
                         <div class="options-grid">
                             ${car.options.map(opt => `
                                 <div class="option-item">
@@ -128,7 +128,7 @@ export async function renderVehicleDetail(container, vehicleId) {
 
                 <!-- Descrição Comercial -->
                 <div class="detail-card">
-                    <h3 style="font-size:1.3rem; margin-bottom:1.2rem;">Descrição do Veículo</h3>
+                    <h3 style="font-size:1.3rem; margin-bottom:1.2rem;">Sobre esta TV</h3>
                     <p style="color:var(--text-color); font-size: 1.05rem; line-height: 1.7; white-space: pre-wrap;">${car.description}</p>
                     
                     ${car.notes ? `
@@ -173,7 +173,7 @@ export async function renderVehicleDetail(container, vehicleId) {
 
                     <div class="sidebar-actions">
                         <a href="${waLink}" target="_blank" class="btn btn-whatsapp" id="btn-wa-contact" style="padding:0.8rem; font-size:1rem; width:100%;">
-                            <i class="fa-brands fa-whatsapp" style="font-size:1.3rem;"></i> Negociar via WhatsApp
+                            <i class="fa-brands fa-whatsapp" style="font-size:1.3rem;"></i> Consultar no WhatsApp
                         </a>
                         
                         <a href="tel:${config.phone.replace(/\D/g, '')}" class="btn btn-secondary" id="btn-tel-contact" style="padding:0.8rem; font-size:1rem; width:100%;">
@@ -223,7 +223,7 @@ export async function renderVehicleDetail(container, vehicleId) {
     <div class="modal-overlay" id="lead-modal">
         <div class="modal-box">
             <div class="modal-header">
-                <h3 style="font-size:1.2rem;">Tenho Interesse no Veículo</h3>
+                        <h3 style="font-size:1.2rem;">Tenho interesse nesta TV</h3>
                 <button class="modal-close" id="lead-modal-close"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal-body">
@@ -239,7 +239,7 @@ export async function renderVehicleDetail(container, vehicleId) {
                     </div>
                     <div class="form-group">
                         <label for="l-proposal">Mensagem / Proposta</label>
-                        <textarea class="form-input" id="l-proposal" rows="3" placeholder="Olá, gostaria de saber se aceitam carro de menor valor na troca."></textarea>
+                        <textarea class="form-input" id="l-proposal" rows="3" placeholder="Olá, gostaria de saber mais sobre esta TV."></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width:100%; padding:0.8rem; margin-top:1rem;">
                         Enviar Proposta
@@ -272,11 +272,11 @@ export async function renderVehicleDetail(container, vehicleId) {
     `;
 
     // Configura SEO de forma dinâmica
-    document.title = `${car.brand} ${car.model} ${car.version} ${car.yearModel} - ${config.companyName}`;
+    document.title = `${car.brand} ${car.model} ${car.version} - ${config.companyName}`;
     
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-        metaDescription.setAttribute("content", `Compre seu ${car.brand} ${car.model} ${car.yearModel} ${car.color} na ${config.companyName}. ${formattedKm}, preço especial: ${formattedPromoPrice || formattedPrice}.`);
+        metaDescription.setAttribute("content", `Compre a ${car.brand} ${car.model} ${car.version} na ${config.companyName}. Preço especial: ${formattedPromoPrice || formattedPrice}.`);
     }
 
     // Injeta dados estruturados do Schema.org para o robô de busca
@@ -284,18 +284,11 @@ export async function renderVehicleDetail(container, vehicleId) {
     if (schemaScript) {
         const schemaData = {
             "@context": "https://schema.org",
-            "@type": "Car",
+            "@type": "Product",
             "name": `${car.brand} ${car.model} ${car.version}`,
             "image": car.photos || [],
             "description": car.description,
-            "modelDate": car.yearModel,
-            "mileageFromOdometer": {
-                "@type": "QuantitativeValue",
-                "value": car.km,
-                "unitCode": "KMT"
-            },
-            "vehicleTransmission": car.transmission,
-            "fuelType": car.fuel,
+            "brand": { "@type": "Brand", "name": car.brand },
             "offers": {
                 "@type": "Offer",
                 "price": car.promoPrice || car.price,

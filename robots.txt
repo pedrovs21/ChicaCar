@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nomedarevenda.github.io/sitemap.xml
+Sitemap: https://pedrovs21.github.io/ChicaCar/sitemap.xml

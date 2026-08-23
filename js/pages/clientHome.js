@@ -58,7 +58,7 @@ export async function renderClientHome(container, initialFilters = {}) {
             if (f.yearMin && car.yearModel < parseInt(f.yearMin)) return false;
             if (f.yearMax && car.yearModel > parseInt(f.yearMax)) return false;
             
-            // Câmbio, Combustível, KM máximo, Carroceria, Cor
+            // Resolução, sistema, tamanho máximo, tecnologia e cor
             if (f.transmission && car.transmission !== f.transmission) return false;
             if (f.fuel && car.fuel !== f.fuel) return false;
             if (f.kmMax && car.km > parseInt(f.kmMax)) return false;
@@ -100,12 +100,12 @@ export async function renderClientHome(container, initialFilters = {}) {
     <!-- HERO SECTION -->
     <section class="hero" style="--hero-banner-url: url('${config.logoUrl || "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80"}')">
         <div class="hero-content">
-            <h1 class="hero-title">Encontre seu próximo carro na ${config.companyName}</h1>
-            <p class="hero-subtitle">${config.tagline}</p>
+            <h1 class="hero-title">Conserto de TV com quem entende do assunto</h1>
+            <p class="hero-subtitle">Diagnóstico, reparo e venda de TVs novas: atendimento rápido, transparente e com garantia.</p>
             <div class="hero-search-wrapper">
-                <input type="text" class="hero-search-input" id="hero-search" placeholder="Digite marca, modelo ou palavra-chave..." value="${homeState.searchQuery}">
+                <input type="text" class="hero-search-input" id="hero-search" placeholder="Busque por marca, tamanho ou modelo..." value="${homeState.searchQuery}">
                 <button class="btn btn-primary hero-search-btn" id="hero-search-btn">
-                    <i class="fa-solid fa-magnifying-glass"></i> Buscar Estoque
+                    <i class="fa-solid fa-magnifying-glass"></i> Ver TVs à venda
                 </button>
             </div>
         </div>
@@ -113,11 +113,22 @@ export async function renderClientHome(container, initialFilters = {}) {
 
     <!-- MAIN BODY -->
     <main class="main-container">
+        <section style="margin:3rem 0; padding:2rem; border-radius:var(--border-radius); background:linear-gradient(135deg,var(--primary-color),var(--secondary-color)); color:white; box-shadow:var(--shadow-md);">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+                <div><span style="font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:.8rem; opacity:.85;">Nosso principal serviço</span><h2 style="font-size:clamp(1.5rem,3vw,2.2rem); margin:.35rem 0 .6rem;">Assistência técnica para TVs</h2><p style="max-width:650px; line-height:1.6; opacity:.95;">Reparamos TVs LED, LCD, OLED e Smart TVs. Avaliamos defeitos de imagem, som, placa, tela e conexão, sempre com orçamento antes do reparo.</p></div>
+                <a href="https://wa.me/${config.whatsapp}?text=${encodeURIComponent('Olá! Gostaria de solicitar um orçamento para conserto da minha TV.')}" target="_blank" class="btn" style="background:#fff;color:var(--primary-color);white-space:nowrap;"><i class="fa-brands fa-whatsapp"></i> Solicitar orçamento</a>
+            </div>
+        </section>
+        <section style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:-1.5rem 0 3rem;">
+            <div class="detail-card" style="padding:1.25rem;"><i class="fa-solid fa-magnifying-glass" style="color:var(--primary-color);font-size:1.3rem;"></i><h3 style="margin:.7rem 0 .4rem;">Diagnóstico preciso</h3><p style="color:var(--text-muted);font-size:.9rem;line-height:1.5;">Analisamos o defeito e explicamos as opções de reparo.</p></div>
+            <div class="detail-card" style="padding:1.25rem;"><i class="fa-solid fa-screwdriver-wrench" style="color:var(--primary-color);font-size:1.3rem;"></i><h3 style="margin:.7rem 0 .4rem;">Reparo com garantia</h3><p style="color:var(--text-muted);font-size:.9rem;line-height:1.5;">Serviço técnico cuidadoso e peças compatíveis de qualidade.</p></div>
+            <div class="detail-card" style="padding:1.25rem;"><i class="fa-solid fa-tv" style="color:var(--primary-color);font-size:1.3rem;"></i><h3 style="margin:.7rem 0 .4rem;">TVs novas</h3><p style="color:var(--text-muted);font-size:.9rem;line-height:1.5;">Também ajudamos você a escolher a televisão ideal.</p></div>
+        </section>
         <!-- Vitrine de Destaques (Apenas se nenhuma pesquisa/filtro estiver ativo) -->
         ${(featuredVehicles.length > 0 && !homeState.searchQuery && Object.keys(homeState.filters).length === 0) ? `
             <div style="margin-bottom: 3rem;">
                 <div class="section-header">
-                    <h2 class="section-title">Veículos em Destaque</h2>
+                    <h2 class="section-title">TVs em destaque</h2>
                 </div>
                 <div class="vehicles-grid">
                     ${featuredVehicles.slice(0, 3).map(car => renderVehicleCard(car, favorites.includes(car.id), compared.includes(car.id))).join('')}
@@ -127,7 +138,7 @@ export async function renderClientHome(container, initialFilters = {}) {
 
         <!-- Listagem Geral com Sidebar de Filtros -->
         <div class="section-header" style="margin-top: 1rem;">
-            <h2 class="section-title">Nosso Estoque</h2>
+            <h2 class="section-title">TVs novas à venda</h2>
         </div>
         
         <div class="client-layout">
@@ -140,7 +151,7 @@ export async function renderClientHome(container, initialFilters = {}) {
             <div>
                 <div class="results-count-container">
                     <span style="font-weight: 600; color:var(--text-muted);" id="results-count-label">
-                        ${filteredStock.length} ${filteredStock.length === 1 ? 'veículo encontrado' : 'veículos encontrados'}
+                        ${filteredStock.length} ${filteredStock.length === 1 ? 'TV encontrada' : 'TVs encontradas'}
                     </span>
                     
                     <div class="sort-container">
@@ -149,8 +160,8 @@ export async function renderClientHome(container, initialFilters = {}) {
                             <option value="recent" ${homeState.sort === 'recent' ? 'selected' : ''}>Mais Recentes</option>
                             <option value="price_asc" ${homeState.sort === 'price_asc' ? 'selected' : ''}>Menor Preço</option>
                             <option value="price_desc" ${homeState.sort === 'price_desc' ? 'selected' : ''}>Maior Preço</option>
-                            <option value="year_desc" ${homeState.sort === 'year_desc' ? 'selected' : ''}>Mais Novos (Ano)</option>
-                            <option value="km_asc" ${homeState.sort === 'km_asc' ? 'selected' : ''}>Menor KM</option>
+                            <option value="year_desc" ${homeState.sort === 'year_desc' ? 'selected' : ''}>Mais Recentes</option>
+                            <option value="km_asc" ${homeState.sort === 'km_asc' ? 'selected' : ''}>Menor Tamanho</option>
                         </select>
                     </div>
                 </div>
@@ -159,8 +170,8 @@ export async function renderClientHome(container, initialFilters = {}) {
                     ${filteredStock.length > 0 
                         ? filteredStock.map(car => renderVehicleCard(car, favorites.includes(car.id), compared.includes(car.id))).join('')
                         : `<div style="grid-column: 1/-1; text-align:center; padding:4rem; color:var(--text-muted);">
-                             <i class="fa-solid fa-car-burst" style="font-size:3rem; margin-bottom:1.5rem;"></i>
-                             <p>Nenhum veículo encontrado com os filtros selecionados.</p>
+                             <i class="fa-solid fa-tv" style="font-size:3rem; margin-bottom:1.5rem;"></i>
+                             <p>Nenhuma TV encontrada com os filtros selecionados.</p>
                            </div>`
                     }
                 </div>
@@ -177,7 +188,7 @@ export async function renderClientHome(container, initialFilters = {}) {
                 <div style="display:flex; gap:2rem;">
                     <div style="text-align:center;">
                         <span style="font-size:2.5rem; font-weight:800; color:var(--primary-color); display:block;">${config.statsVehiclesSold}</span>
-                        <span style="font-size:0.85rem; color:var(--text-muted); font-weight:600; text-transform:uppercase;">Carros Vendidos</span>
+                        <span style="font-size:0.85rem; color:var(--text-muted); font-weight:600; text-transform:uppercase;">Atendimentos</span>
                     </div>
                     <div style="text-align:center;">
                         <span style="font-size:2.5rem; font-weight:800; color:var(--primary-color); display:block;">${config.statsYearsInMarket}</span>
@@ -190,7 +201,7 @@ export async function renderClientHome(container, initialFilters = {}) {
                 </div>
             </div>
             <div style="border-radius:var(--border-radius); overflow:hidden; box-shadow:var(--shadow-lg); height:350px; background-color:#e2e8f0;">
-                <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80" alt="Fachada da concessionária" style="width:100%; height:100%; object-fit:cover;">
+                <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=800&q=80" alt="Televisor em ambiente residencial" style="width:100%; height:100%; object-fit:cover;">
             </div>
         </div>
     </section>
@@ -199,7 +210,7 @@ export async function renderClientHome(container, initialFilters = {}) {
     <section id="contato" class="main-container" style="margin:4rem auto; display:grid; grid-template-columns: 1fr 1.5fr; gap:3rem;">
         <div>
             <h2 class="section-title" style="margin-bottom: 1.5rem;">Fale Conosco</h2>
-            <p style="color:var(--text-muted); margin-bottom:2rem; line-height:1.5;">Quer agendar um test drive, simular financiamento ou avaliar o seu veículo na troca? Entre em contato agora mesmo!</p>
+            <p style="color:var(--text-muted); margin-bottom:2rem; line-height:1.5;">Sua TV não liga, está sem imagem ou com linhas na tela? Fale conosco para solicitar um orçamento ou encontrar sua nova TV.</p>
             
             <ul class="contact-info-list" style="font-size:1rem; gap:1.2rem;">
                 <li>
@@ -256,7 +267,7 @@ export async function renderClientHome(container, initialFilters = {}) {
                 </div>
                 <div class="form-group">
                     <label for="c-message">Mensagem / Dúvida *</label>
-                    <textarea class="form-input" id="c-message" rows="4" placeholder="Tenho interesse em agendar um teste..." required style="resize:vertical;"></textarea>
+                    <textarea class="form-input" id="c-message" rows="4" placeholder="Ex.: Minha TV liga, mas está sem imagem. Gostaria de solicitar um orçamento." required style="resize:vertical;"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width:100%; padding:0.8rem;">
                     Enviar Contato
@@ -327,7 +338,7 @@ function refreshStockGrid(favorites, compared, filteredStock) {
     const countLabel = document.getElementById('results-count-label');
     
     if (countLabel) {
-        countLabel.innerText = `${filteredStock.length} ${filteredStock.length === 1 ? 'veículo encontrado' : 'veículos encontrados'}`;
+        countLabel.innerText = `${filteredStock.length} ${filteredStock.length === 1 ? 'TV encontrada' : 'TVs encontradas'}`;
     }
 
     if (stockGrid) {
@@ -336,8 +347,8 @@ function refreshStockGrid(favorites, compared, filteredStock) {
         } else {
             stockGrid.innerHTML = `
             <div style="grid-column: 1/-1; text-align:center; padding:4rem; color:var(--text-muted);">
-                 <i class="fa-solid fa-car-burst" style="font-size:3rem; margin-bottom:1.5rem; color:var(--primary-color);"></i>
-                 <p>Nenhum veículo encontrado com os filtros selecionados.</p>
+                 <i class="fa-solid fa-tv" style="font-size:3rem; margin-bottom:1.5rem; color:var(--primary-color);"></i>
+                 <p>Nenhuma TV encontrada com os filtros selecionados.</p>
             </div>`;
         }
     }
@@ -383,7 +394,7 @@ function bindGridEvents(container, favorites, compared) {
             
             if (compareCb.checked) {
                 if (compIds.length >= 3) {
-                    alert("Você pode comparar no máximo 3 veículos simultaneamente.");
+                    alert("Você pode comparar no máximo 3 TVs simultaneamente.");
                     compareCb.checked = false;
                 } else if (!compIds.includes(id)) {
                     compIds.push(id);

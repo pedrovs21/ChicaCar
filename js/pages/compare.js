@@ -16,7 +16,7 @@ export async function renderComparePage(container) {
     
     <main class="main-container" style="min-height: 60vh;">
         <div class="section-header">
-            <h2 class="section-title">Comparação de Veículos</h2>
+            <h2 class="section-title">Comparação de TVs</h2>
         </div>
         
         <div id="compare-grid-wrapper" style="margin-top: 1.5rem; overflow-x:auto;">
